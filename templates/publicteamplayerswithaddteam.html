@@ -1,0 +1,77 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<!-- Displays error messages and prompts -->
+<br />
+<div class = 'flash'>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+</div>
+
+<section class="row">
+  <section class = "col-md-9 col-xs-9 edit-button">
+    <h2>{{team.name}} Starting Lineup</h2>
+  </section>
+  <section class = "col-md-3 col-xs-3 edit-button created-by">
+    <br />
+    <h6>Created by {{team.user.name}}</h6>
+  </section>
+</section>
+
+<section class = "row">
+  
+  <!-- Displays all teams -->
+  <section class = "col-md-4 col-xs-4 outline">
+    <section class = "row">
+      <section class = "col-md-6 col-xs-6">
+        <h4>All Teams</h4>
+      </section>
+      <section class = "col-md-6 col-xs-6 add-button">
+        <a href="{{url_for('newTeam')}}"><span class="fa fa-plus-circle" aria-hidden="true"></span> Add Team</a>
+      </section>
+    </section>
+    {% for t in teams %}
+		<a href = "{{url_for('showPlayers', team_id = t.id)}}">
+			<section class="row">
+					<section class="col-md-12 team-list">
+						<h5>{{t.name}}</h5>
+					</section>
+			</section>
+		</a>
+	  {% endfor %}
+  </section>
+
+  <!-- Displays all players in selected team -->
+  <section class = "col-md-7 col-xs-7 outline">
+    <section class = "row">
+      <section class = "col-md-6 col-xs-6">
+        <h4>{{team.name}}</h4>
+      </section>
+    </section>
+    {% for p in players %}
+    <a href = "{{url_for('showPlayer', player_id = p.id)}}">
+      <section class="row">
+        <section class="col-md-12 player-list">
+          <section class="col-md-7">
+            <h5>{{p.name}}</h5>
+          </section>
+          <section class="col-md-5" align="right">
+            <h5>{{p.position}}</h5>
+          </section>
+        </section>
+      </section>
+    </a>
+    {% endfor %}
+  </section>
+</section>
+
+{% include "footer.html" %}
+{% endblock %}

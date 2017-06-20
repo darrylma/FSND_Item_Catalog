@@ -1,0 +1,47 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<h2>{{player.name}}</h2>
+
+<!-- Displays player details. Read only -->
+<section class = "row">
+  <section class = "col-md-6 col-xs-7 outline">
+		<section class="row">
+      <section class="col-md-6 col-xs-6 player-details">
+				<h5>Postion:</h5>
+      </section>
+      <section class="col-md-6 col-xs-6 player-details" align="right">
+				<h5>{{player.position}}</h5>
+      </section>
+      <section class="col-md-6 col-xs-6 player-details">
+				<h5>Age:</h5>
+      </section>
+      <section class="col-md-6 col-xs-6 player-details" align="right">
+				<h5>{{player.age}}</h5>
+      </section>
+      <section class="col-md-6 col-xs-6 player-details">
+        <h5>Team:</h5>
+      </section>
+      <section class="col-md-6 col-xs-6 player-details" align="right">
+        <h5>{{player.team.name}}</h5>
+      </section>
+      <section class="col-md-6 col-xs-6 player-details">
+        <h5>Height:</h5>
+      </section>
+      <section class="col-md-6 col-xs-6 player-details" align="right">
+        <h5>{{player.height_feet}}'{{player.height_inches}}''</h5>
+      </section>
+      <section class="col-md-6 col-xs-6 player-details">
+        <h5>Weight:</h5>
+      </section>
+      <section class="col-md-6 col-xs-6 player-details" align="right">
+        <h5>{{player.weight}} lbs</h5>
+      </section>
+			</section>
+		</section>
+  </section>
+</section>
+
+{% include "footer.html" %}
+{% endblock %}

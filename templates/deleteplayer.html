@@ -1,0 +1,21 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<section class = "row">
+  <section class = "col-md-11 col-xs-11 outline">
+    <form action="#" method = "post">
+      <h3>Are you sure you want to delete {{player.name}}?</h3>
+			<div class="form-group">
+        <div class="padding-bottom"></div>
+
+        <!-- Buttons to confirm/cancel delete -->
+			  <button type="submit" class="btn btn-default" id="submit" type="submit"><span class="fa fa-trash" aria-hidden="true"></span> Delete</button>
+        <a href = '{{url_for('showPlayers', team_id=player.team.id)}}'><div class="btn btn-default"><span class="fa fa-ban" aria-hidden="true"></span> Cancel</div></a>
+			</div>
+		</form>
+  </section>
+</section>
+
+{% include "footer.html" %}
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<!-- Displays error messages and prompts -->
+<br />
+<div class = 'flash'>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+</div>
+
+<section class="row">
+  <section class = "col-md-9 col-xs-9 edit-button">
+    <h2>{{team.name}} Starting Lineup</h2>
+  </section>
+  <section class = "col-md-3 col-xs-3 edit-button created-by">
+    <br />
+    <h6>Created by {{team.user.name}}</h6>
+  </section>
+</section>
+
+<section class="row">
+
+  <!-- Buttons to initiate edit or delete of team -->
+  <section class = "col-md-12 col-xs-12 edit-button">
+    <a href="{{url_for('editTeam', team_id=team.id)}}"><span class="fa fa-pencil" aria-hidden="true"></span> Edit Team </a>
+    |
+    <a href="{{url_for('deleteTeam', team_id=team.id)}}"><span class="fa fa-trash" aria-hidden="true"></span> Delete Team</a>
+  </section>
+</section>
+
+<section class = "row">
+  <section class = "col-md-4 col-xs-4 outline">
+
+    <!-- Displays all teams -->
+    <section class = "row">
+      <section class = "col-md-6 col-xs-6">
+        <h4>All Teams</h4>
+      </section>
+      <section class = "col-md-6 col-xs-6 add-button">
+        <a href="{{url_for('newTeam')}}"><span class="fa fa-plus-circle" aria-hidden="true"></span> Add Team</a>
+      </section>
+    </section>
+    {% for t in teams %}
+		<a href = "{{url_for('showPlayers', team_id = t.id)}}">
+			<section class="row">
+					<section class="col-md-12 team-list">
+						<h5>{{t.name}}</h5>
+					</section>
+			</section>
+		</a>
+	  {% endfor %}
+  </section>
+
+  <!-- Displays all players -->
+  <section class = "col-md-7 col-xs-7 outline">
+    <section class = "row">
+      <section class = "col-md-6 col-xs-6">
+        <h4>{{team.name}}</h4>
+      </section>
+
+      <!-- Button to initiate creation of player -->
+      <section class = "col-md-6 col-xs-6 add-button">
+        <a href="{{url_for('newPlayer', team_id=team.id)}}"><span class="fa fa-plus-circle" aria-hidden="true"></span> Add Player</a>
+      </section>
+    </section>
+    {% for p in players %}
+    <a href = "{{url_for('showPlayer', player_id = p.id)}}">
+      <section class="row">
+        <section class="col-md-12 player-list">
+          <section class="col-md-7">
+            <h5>{{p.name}}</h5>
+          </section>
+          <section class="col-md-5" align="right">
+            <h5>{{p.position}}</h5>
+          </section>
+        </section>
+        <section class="row">
+          <section class = "col-md-1 col-xs-1">
+          </section>
+
+          <!-- Buttons to initiate edit or delete of player -->
+          <section class = "col-md-11 col-xs-11 player-edit-button">
+            <a href="{{url_for('editPlayer', team_id=p.team.id, player_id=p.id)}}"><span class="fa fa-pencil" aria-hidden="true"></span> Edit Player </a>
+            |
+            <a href="{{url_for('deletePlayer', team_id=p.team.id, player_id=p.id)}}"><span class="fa fa-trash" aria-hidden="true"></span> Delete Player</a>
+          </section>
+        </section>
+      </section>
+    </a>
+    {% endfor %}
+  </section>
+</section>
+
+{% include "footer.html" %}
+{% endblock %}

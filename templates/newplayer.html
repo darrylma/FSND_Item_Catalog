@@ -1,0 +1,77 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<h2>Create a new player</h2>
+<section class = "row">
+  <section class = "col-md-11 col-xs-11 outline">
+    <form action="#" method = "post">
+
+      <!-- Form template to capture new player details -->
+			<div class="form-group">
+			     <label for="name">Name:</label>
+			     <input type ="text" class="form-control" maxlength="100" name="name" placeholder="Name">
+           <br />
+           <section class="row">
+             <section class="col-md-4 col-xs-4">
+               <label for="name">Height (feet):</label>
+               <select class="form-control" name = "height_feet">
+                 <option value=""></option>
+                 <option value="5">5</option>
+                 <option value="6">6</option>
+                 <option value="7">7</option>
+              </select>
+             </section>
+             <section class="col-md-4 col-xs-4">
+               <label for="name">Height (inches):</label>
+               <select class="form-control" name = "height_inches">
+                  <option value=""></option>
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+              </select>
+             </section>
+             <section class="col-md-4 col-xs-4">
+               <label for="name">Weight (lbs):</label>
+    			     <input type ="text" class="form-control" maxlength="20" name="weight" placeholder="Weight">
+             </section>
+           </section>
+           <br />
+           <section class="row">
+             <section class="col-md-4 col-xs-4">
+               <label for="name">Age:</label>
+    			     <input type ="text" class="form-control" maxlength="20" name="age" placeholder="Age">
+             </section>
+             <section class="col-md-4 col-xs-4">
+               <label for="name">Position:</label>
+               <select class="form-control" name = "position">
+                  <option value=""></option>
+                  <option value="Center">Center</option>
+                  <option value="Power Forward">Power Forward</option>
+                  <option value="Small Forward">Small Forward</option>
+                  <option value="Shooting Guard">Shooting Guard</option>
+                  <option value="Point Guard">Point Guard</option>
+              </select>
+             </section>
+           </section>
+			     <div class="padding-bottom"></div>
+
+           <!-- Buttons to confirm/cancel creation of new player -->
+			     <button type="submit" class="btn btn-default" id="submit" type="submit"><span class="fa fa-plus-square-o" aria-hidden="true"></span> Create</button>
+           <a href = '{{url_for('showPlayers', team_id=team_id)}}'><div class="btn btn-default"><span class="fa fa-ban" aria-hidden="true"></span> Cancel</div></a>
+			</div>
+		</form>
+  </section>
+</section>
+
+{% include "footer.html" %}
+{% endblock %}
